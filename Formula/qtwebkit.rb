@@ -4,7 +4,7 @@ class Qtwebkit < Formula
   url "https://github.com/annulen/webkit/releases/download/qtwebkit-tp4/qtwebkit-tp4.tar.xz"
   sha256 "35fcf7e04742b040a072245d79f36d1486e63345a69f53e09408c6564d3bcf27"
   revision 1
-  version "tp4"
+  version "HEAD-3777b4f"
   head "https://github.com/annulen/webkit.git", :branch => "qtwebkit-stable"
 
   depends_on "cmake" => :build
