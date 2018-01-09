@@ -14,6 +14,12 @@ class Qtwebkit < Formula
   depends_on "fontconfig"
   depends_on "webp" => :optional
 
+  bottle do
+    root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
+    cellar :any
+    sha256 "1be615507d1296c1c48ed263491b6a1c6c82adf6af9994c73035f1f21a65a963" => :high_sierra
+  end
+
   patch do
     url "https://gist.githubusercontent.com/mnutt/8a0ae505e13ee89d571036d67a56bf9e/raw/c95d2777b138a11af330fac83c03bede276169de/mac_framework_includes.patch"
   end
