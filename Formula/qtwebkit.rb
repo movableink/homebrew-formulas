@@ -17,7 +17,7 @@ class Qtwebkit < Formula
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
     cellar :any
-    sha256 "1be615507d1296c1c48ed263491b6a1c6c82adf6af9994c73035f1f21a65a963" => :high_sierra
+    sha256 "32ad6a8978ab9e64a0716f679fd357c0dd12ae282360e7a8f36b78ff64ccbe20" => :high_sierra
   end
 
   patch do
