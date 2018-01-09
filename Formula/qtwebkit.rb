@@ -22,12 +22,8 @@ class Qtwebkit < Formula
 
   patch do
     url "https://gist.githubusercontent.com/mnutt/8a0ae505e13ee89d571036d67a56bf9e/raw/c95d2777b138a11af330fac83c03bede276169de/mac_framework_includes.patch"
+    sha256 "6933e62d45bbc6cfc38a7ec376637f300226768c94c91b268555b843cf429c8e"
   end
-
-  # patch do
-  #   url "https://raw.githubusercontent.com/Homebrew/formula-patches/master/webkit/webkit-2.14.1.diff"
-  #   sha256 "df9af608b9c5c1f19c26db5970ad6b8638fc6b7573b9510f82e4ddadf248787d"
-  # end
 
   def install
     qt5 = Formula["qt5"]
