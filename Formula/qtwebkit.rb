@@ -9,7 +9,7 @@ class Qtwebkit < Formula
 
   depends_on "cmake" => :build
   depends_on "ninja" => [:build, :optional]
-  depends_on "qt"
+  depends_on "movableink/formulas/qt"
   depends_on "libjpeg"
   depends_on "libpng"
   depends_on "fontconfig"
