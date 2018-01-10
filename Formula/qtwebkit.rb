@@ -9,10 +9,11 @@ class Qtwebkit < Formula
 
   depends_on "cmake" => :build
   depends_on "ninja" => [:build, :optional]
-  depends_on "qt5"
+  depends_on "qt"
+  depends_on "libjpeg"
   depends_on "libpng"
   depends_on "fontconfig"
-  depends_on "webp" => :optional
+  depends_on "webp"
 
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
