@@ -1,11 +1,11 @@
 class Qtwebkit < Formula
   desc "Full-featured qt port of the WebKit rendering engine"
-  homepage "https://github.com/annulen/webkit"
+  homepage "https://github.com/movableink/webkit"
   url "https://github.com/annulen/webkit/releases/download/qtwebkit-tp4/qtwebkit-tp4.tar.xz"
   sha256 "35fcf7e04742b040a072245d79f36d1486e63345a69f53e09408c6564d3bcf27"
   revision 1
-  version "HEAD-3777b4f"
-  head "https://github.com/annulen/webkit.git", :branch => "qtwebkit-stable"
+  version "HEAD-c0e9b56"
+  head "https://github.com/movableink/webkit.git", :branch => "macos-include-dir"
 
   depends_on "cmake" => :build
   depends_on "ninja" => [:build, :optional]
@@ -18,13 +18,7 @@ class Qtwebkit < Formula
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
     cellar :any
-    rebuild 2
-    sha256 "f5f433ee6652eaa09a52708987fe4c1b831c12f5f75cac51ef6f308317462fb0" => :high_sierra
-  end
-
-  patch do
-    url "https://gist.githubusercontent.com/mnutt/8a0ae505e13ee89d571036d67a56bf9e/raw/c95d2777b138a11af330fac83c03bede276169de/mac_framework_includes.patch"
-    sha256 "6933e62d45bbc6cfc38a7ec376637f300226768c94c91b268555b843cf429c8e"
+    sha256 "b6c1a5f275e9bc2a945a97c0c00c88c4fb709c156d44f423893fa1dbc78db446" => :high_sierra
   end
 
   def install
