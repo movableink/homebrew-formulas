@@ -6,6 +6,8 @@ class Postgresql < Formula
 
   bottle do
     rebuild 1
+    cellar :any
+    root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
     sha256 "16a3c8380446f2e3b4356acd47217afbdb5b1dc8c6acede4e7834dfff897d4f8" => :mojave
     sha256 "cd4719c624150c163a6b52d5135742088d608e31c7b668531e91516bbbfcf100" => :high_sierra
     sha256 "e5565c3fe490a6f5fb703b2aaca8228a23fd97d94585169667a61dc9b1780ff9" => :sierra
