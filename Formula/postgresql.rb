@@ -5,7 +5,6 @@ class Postgresql < Formula
   sha256 "68a8276f08bda8fbefe562faaf8831cb20664a7a1d3ffdbbcc5b83e08637624b"
 
   bottle do
-    rebuild 1
     cellar :any
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
     sha256 "16a3c8380446f2e3b4356acd47217afbdb5b1dc8c6acede4e7834dfff897d4f8" => :mojave
