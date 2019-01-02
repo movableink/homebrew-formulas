@@ -11,8 +11,6 @@ class Postgresql < Formula
     sha256 "273f9b31a2446547e9b8ae66331bd9d69522a798acfbb1ad0a2406ea69746a61" => :sierra
   end
 
-  keg_only :versioned_formula
-
   depends_on "pkg-config" => :build
   depends_on "icu4c"
   depends_on "openssl"
