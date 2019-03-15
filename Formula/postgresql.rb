@@ -14,7 +14,7 @@ class Postgresql < Formula
   depends_on "pkg-config" => :build
   depends_on "icu4c"
   depends_on "openssl"
-  depends_on "readline"
+  depends_on "movableink/formulas/readline"
 
   def install
     # avoid adding the SDK library directory to the linker search path
