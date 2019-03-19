@@ -23,7 +23,7 @@ Small formula that are quick to build are fine to build from source each time an
 
 ```bash
 brew reinstall --build-bottle formula-name
-brew bottle formula-name
+brew bottle --root-url https://movableink-homebrew-formulas.s3.amazonaws.com formula-name
 ```
 
 This will create a tarball of the built formula and generate a ruby block to add to the formula. Upload the tarball to s3:
@@ -34,10 +34,4 @@ s3cmd put -M -P formula-name-version.tar.gz s3://movableink-homebrew-formulas/
 
 Note that "rebuilds" (re-bottling the same version) will append a rebuild version to the tarball which should be accompanied by the rebuild directive in the ruby block.
 
-Edit the ruby block to change the `root_url`:
-
-```ruby
-root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
-```
-
-Lastly, add the rebuild block to the formula and open a PR.
+Lastly, add the ruby block to the formula and open a PR.
