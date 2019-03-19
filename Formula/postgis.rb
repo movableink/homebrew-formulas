@@ -5,10 +5,10 @@ class Postgis < Formula
   sha256 "fb137056f43aae0e9d475dc5b7934eccce466f86f5ceeb69ec8b5cea26817a91"
 
   bottle do
-    cellar :any
-    rebuild 1
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
-    sha256 "e28d9f748065a53bf0cb3941633819b808189109fa759b81b8955702bc20a112" => :mojave
+    cellar :any
+    rebuild 2
+    sha256 "b1f35cb62988ba9a4bec2a24981bf7ad85235833b3de8508d5442cc4a427b834" => :mojave
   end
 
   head do
