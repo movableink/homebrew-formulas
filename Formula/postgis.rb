@@ -21,7 +21,7 @@ class Postgis < Formula
 
   depends_on "gpp" => :build
   depends_on "pkg-config" => :build
-  depends_on "gdal" # for GeoJSON and raster handling
+  depends_on "movableink/formulas/gdal" # for GeoJSON and raster handling
   depends_on "geos"
   depends_on "json-c" # for GeoJSON and raster handling
   depends_on "pcre"
