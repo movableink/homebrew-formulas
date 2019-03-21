@@ -94,7 +94,7 @@ class Postgresql < Formula
   EOS
   end
 
-  plist_options :manual => "pg_ctl -D #{HOMEBREW_PREFIX}/var/postgresql start"
+  plist_options :manual => "pg_ctl -D #{HOMEBREW_PREFIX}/var/postgres start"
 
   def plist; <<~EOS
     <?xml version="1.0" encoding="UTF-8"?>
@@ -109,7 +109,7 @@ class Postgresql < Formula
       <array>
         <string>#{opt_bin}/postgres</string>
         <string>-D</string>
-        <string>#{var}/#{name}</string>
+        <string>#{var}/postgres</string>
       </array>
       <key>RunAtLoad</key>
       <true/>
