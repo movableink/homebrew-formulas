@@ -6,8 +6,8 @@ class Postgresql < Formula
 
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
-    rebuild 2
-    sha256 "6bf44645afdd82a330c0bde8914d382c18bf92f6863b24a027334d1aad2ff510" => :mojave
+    rebuild 3
+    sha256 "8bdc910e5cb9f0562721d2a2a0f7029f18c10647639dfc9843842dafa6498880" => :mojave
   end
 
   depends_on "pkg-config" => :build
@@ -25,8 +25,8 @@ class Postgresql < Formula
     args = %W[
       --disable-debug
       --prefix=#{prefix}
-      --datadir=#{pkgshare}
-      --libdir=#{lib}
+      --datadir=#{HOMEBREW_PREFIX}/share/postgresql
+      --libdir=#{HOMEBREW_PREFIX}/lib
       --sysconfdir=#{etc}
       --docdir=#{doc}
       --enable-thread-safety
@@ -61,7 +61,7 @@ class Postgresql < Formula
     system "make"
 
     #  pkglibdir=#{lib}/postgresql
-    dirs = %W[datadir=#{pkgshare} libdir=#{lib} pkglibdir=#{lib}]
+    dirs = %W[datadir=#{pkgshare} libdir=#{lib} pkglibdir=#{lib}/postgresql]
 
     # Temporarily disable building/installing the documentation.
     # Postgresql seems to "know" the build system has been altered and
@@ -126,8 +126,8 @@ class Postgresql < Formula
 
   test do
     system "#{bin}/initdb", testpath/"test"
-    assert_equal pkgshare.to_s, shell_output("#{bin}/pg_config --sharedir").chomp
-    assert_equal lib.to_s, shell_output("#{bin}/pg_config --libdir").chomp
-    assert_equal lib.to_s, shell_output("#{bin}/pg_config --pkglibdir").chomp
+    assert_equal "#{HOMEBREW_PREFIX}/share/postgresql", shell_output("#{bin}/pg_config --sharedir").chomp
+    assert_equal "#{HOMEBREW_PREFIX}/lib", shell_output("#{bin}/pg_config --libdir").chomp
+    assert_equal "#{HOMEBREW_PREFIX}/lib", shell_output("#{bin}/pg_config --pkglibdir").chomp
   end
 end
