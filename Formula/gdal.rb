@@ -6,6 +6,7 @@ class Gdal < Formula
   revision 1
 
   bottle do
+    root_url "https://homebrew.bintray.com/bottles"
     sha256 "448a4cc4dde65b98bae3abaa94e7a037d95cc002ba12e9dc5fd56ed21b7b7a3e" => :mojave
     sha256 "322f5c80ead8cda7e2466099c5e1fb6306901646234a457cdfe1b8f14e5ebf22" => :high_sierra
     sha256 "2430ac950db9240c1548d94d410c015c202f30dd10985c229f43c1dda6032966" => :sierra
