@@ -1,8 +1,8 @@
 class Nsq < Formula
   desc "Realtime distributed messaging platform"
   homepage "https://nsq.io/"
-  url "https://github.com/nsqio/nsq/archive/v0.3.8.tar.gz"
-  sha256 "d9107cdfe218523a74ee801caaa97968becb4b82dae7085dbb52d05c25028ff3"
+  url "https://github.com/nsqio/nsq/releases/download/v0.2.31/nsq-0.2.31.darwin-amd64.go1.3.1.tar.gz"
+  sha256 "ffc40ac7e7bf70de08bf8783aeb662b3aa974b16f4417f21a0fc16d5582724e8"
   head "https://github.com/nsqio/nsq.git"
 
   bottle do
@@ -13,17 +13,17 @@ class Nsq < Formula
     sha256 "02225f180c8e5ebc9d5e0ecd30c0875738b10904143c031a07709a6661362243" => :el_capitan
   end
 
-  depends_on "gpm" => :build
-  depends_on "go" => :build
-
   def install
-    ENV["GOPATH"] = buildpath
-    (buildpath/"src/github.com/nsqio/nsq").install buildpath.children
-    cd "src/github.com/nsqio/nsq" do
-      system "gpm", "install"
-      system "make", "DESTDIR=#{prefix}", "PREFIX=", "install"
-      prefix.install_metafiles
-    end
+    bin.install "#{buildpath}/bin/nsqlookupd"
+    bin.install "#{buildpath}/bin/nsqd"
+	bin.install "#{buildpath}/bin/nsqadmin"
+	bin.install "#{buildpath}/bin/nsq_pubsub"
+	bin.install "#{buildpath}/bin/nsq_to_nsq"
+	bin.install "#{buildpath}/bin/nsq_to_file"
+	bin.install "#{buildpath}/bin/nsq_to_http"
+	bin.install "#{buildpath}/bin/nsq_tail"
+	bin.install "#{buildpath}/bin/nsq_stat"
+	bin.install "#{buildpath}/bin/to_nsq"
   end
 
   def post_install
