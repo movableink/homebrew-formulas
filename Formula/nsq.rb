@@ -16,8 +16,13 @@ class Nsq < Formula
     (buildpath/"src/github.com/bitly/nsq").install buildpath.children
 
     cd "src/github.com/bitly/nsq" do
+      system "mv", "Godeps", "tmp"
+      system "mkdir", "Godeps"
+      system "mv", "tmp", "Godeps/Godeps.json"
+
       system "dep", "init"
       system "dep", "ensure"
+
       system "make", "DESTDIR=#{prefix}", "PREFIX=", "all"
       system "make", "DESTDIR=#{prefix}", "PREFIX=", "install"
       prefix.install_metafiles
