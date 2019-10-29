@@ -6,7 +6,7 @@ We use a custom homebrew 'tap' for a couple of different cases:
 
 * qt and qt-webkit - we build our own custom versions of qt and qtwebkit to support some proprietary features for capturama
 * postgres - homebrew aggressively upgrades postgres, and we want to keep everyone nearer to the same version
-* nsq - we maintain a very old version of NSQ that is incompatible with NSQ that is available in homebrew today
+* nsq - we maintain a version of NSQ that is compatible with the NSQ that we run in production
 
 ## Using the tap
 
