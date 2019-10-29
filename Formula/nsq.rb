@@ -1,102 +1,19 @@
 class Nsq < Formula
   desc "Realtime distributed messaging platform"
   homepage "https://nsq.io/"
-  #url "https://github.com/nsqio/nsq/releases/download/v0.2.31/nsq-0.2.31.darwin-amd64.go1.3.1.tar.gz"
-  #version "0.2.31"
-  #sha256 "ffc40ac7e7bf70de08bf8783aeb662b3aa974b16f4417f21a0fc16d5582724e8"
-  url "https://github.com/nsqio/nsq/archive/v0.2.31.tar.gz"
-  sha256 "66a8431ab169d661b547afa77fc7355dac7d955f259a937ed6b423b9ebadefac"
-  head "https://github.com/nsqio/nsq.git"
+  url "https://movableink-developer-binaries.s3-us-west-2.amazonaws.com/nsq_0.3.8_darwin.zip"
+  sha256 "92067e42af27b8a15e5f037e2cb9014858ec369140ce76b5aedd563bf1c2ccf8"
 
-  depends_on "go" => :build
-  depends_on "dep" => :build
+  depends_on "movableink/formulas/nsqadmin"
+  depends_on "movableink/formulas/nsqd"
+  depends_on "movableink/formulas/nsqlookupd"
+  depends_on "movableink/formulas/nsqutils"
 
   def install
-    ENV["GOPATH"] = buildpath
-    (buildpath/"src/github.com/bitly/nsq").install buildpath.children
-
-    cd "src/github.com/bitly/nsq" do
-      system "mv", "Godeps", "tmp"
-      system "mkdir", "Godeps"
-      system "mv", "tmp", "Godeps/Godeps.json"
-
-      system "dep", "init"
-      system "dep", "ensure"
-
-      system "make", "DESTDIR=#{prefix}", "PREFIX=", "all"
-      system "make", "DESTDIR=#{prefix}", "PREFIX=", "install"
-      prefix.install_metafiles
-    end
-  end
-
-  def post_install
-    (var/"log").mkpath
-    (var/"nsq").mkpath
-  end
-
-  plist_options :manual => "nsqd -data-path=#{HOMEBREW_PREFIX}/var/nsq"
-
-  def plist; <<~EOS
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-      <key>KeepAlive</key>
-      <true/>
-      <key>Label</key>
-      <string>#{plist_name}</string>
-      <key>ProgramArguments</key>
-      <array>
-        <string>#{bin}/nsqd</string>
-        <string>-data-path=#{var}/nsq</string>
-      </array>
-      <key>RunAtLoad</key>
-      <true/>
-      <key>WorkingDirectory</key>
-      <string>#{var}/nsq</string>
-      <key>StandardErrorPath</key>
-      <string>#{var}/log/nsqd.error.log</string>
-      <key>StandardOutPath</key>
-      <string>#{var}/log/nsqd.log</string>
-    </dict>
-    </plist>
-  EOS
+    mkdir "#{bin}"
   end
 
   test do
-    begin
-      lookupd = fork do
-        exec bin/"nsqlookupd"
-      end
-      sleep 2
-      d = fork do
-        exec bin/"nsqd", "--lookupd-tcp-address=127.0.0.1:4160"
-      end
-      sleep 2
-      admin = fork do
-        exec bin/"nsqadmin", "--lookupd-http-address=127.0.0.1:4161"
-      end
-      sleep 2
-      to_file = fork do
-        exec bin/"nsq_to_file", "--lookupd-http-address=127.0.0.1:4161",
-                                "--output-dir=#{testpath}",
-                                "--topic=test"
-      end
-      sleep 2
-      system "curl", "-d", "hello", "http://127.0.0.1:4151/pub?topic=test"
-      sleep 2
-      dat = File.read(Dir["*.dat"].first)
-      assert_match "test", dat
-      assert_match version.to_s, dat
-    ensure
-      Process.kill(9, lookupd)
-      Process.kill(9, d)
-      Process.kill(9, admin)
-      Process.kill(9, to_file)
-      Process.wait lookupd
-      Process.wait d
-      Process.wait admin
-      Process.wait to_file
-    end
+    system "true"
   end
 end
