@@ -2,10 +2,10 @@ class Nsqadmin < Formula
   desc "Admin UI for NSQ"
   homepage "https://nsq.io"
   url "https://movableink-developer-binaries.s3-us-west-2.amazonaws.com/nsq_0.3.8_darwin.zip"
-  sha256 "92067e42af27b8a15e5f037e2cb9014858ec369140ce76b5aedd563bf1c2ccf8"
+  sha256 "7ac121e06df0a08b63b646064ec6710ee70e9bde89272ef502ea9b5ae8039bc6"
 
   def install
-    bin.install "#{buildpath}/bin/nsqadmin"
+    bin.install "#{buildpath}/nsqadmin"
   end
 
   plist_options :startup => true
