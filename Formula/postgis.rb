@@ -6,9 +6,8 @@ class Postgis < Formula
 
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
-    cellar :any
     rebuild 3
-    sha256 "307c893d91d359d4df67c8f76379bd9cac344412e061076fb0699ba894ce12b8" => :mojave
+    sha256 cellar: :any, mojave: "307c893d91d359d4df67c8f76379bd9cac344412e061076fb0699ba894ce12b8"
   end
 
   head do

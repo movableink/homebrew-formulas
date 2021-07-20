@@ -11,7 +11,7 @@ class Qt < Formula
 
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
-    sha256 "6483de8b8724673a06e03abfc667286c5c660c74b93458f2f9b0cee11da91782" => :high_sierra
+    sha256 high_sierra: "6483de8b8724673a06e03abfc667286c5c660c74b93458f2f9b0cee11da91782"
   end
 
   keg_only "Qt 5 has CMake issues when linked"
