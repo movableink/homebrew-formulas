@@ -7,7 +7,7 @@ class Postgresql < Formula
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
     rebuild 3
-    sha256 "8bdc910e5cb9f0562721d2a2a0f7029f18c10647639dfc9843842dafa6498880" => :mojave
+    sha256 mojave: "8bdc910e5cb9f0562721d2a2a0f7029f18c10647639dfc9843842dafa6498880"
   end
 
   depends_on "pkg-config" => :build
