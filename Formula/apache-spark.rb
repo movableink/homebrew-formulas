@@ -6,8 +6,6 @@ class ApacheSpark < Formula
   sha256 "e964a28e797707a2924c8d29b0c2f4bca2b58c893b1e3207d70e0cd40dfd2758"
   head "https://github.com/apache/spark.git"
 
-  bottle :unneeded
-
   depends_on "openjdk"
 
   def install
