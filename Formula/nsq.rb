@@ -2,7 +2,7 @@ class Nsq < Formula
   desc "Realtime distributed messaging platform"
   homepage "https://nsq.io/"
   url "https://movableink-developer-binaries.s3-us-west-2.amazonaws.com/nsq_0.3.8_darwin.zip"
-  sha256 "4df0a59b8e82c9502467b94df0ef5135457033751d9ff3239076539e1c6ea22e"
+  sha256 "c1a5c2fb74867c098dc4991c20eaf7adffc2e1c4ef5962052e763cd9b64b78a1"
 
   depends_on "movableink/formulas/nsqadmin"
   depends_on "movableink/formulas/nsqd"
