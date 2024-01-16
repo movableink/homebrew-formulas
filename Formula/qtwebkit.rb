@@ -1,15 +1,15 @@
 class Qtwebkit < Formula
   desc "Full-featured qt port of the WebKit rendering engine"
   homepage "https://github.com/movableink/webkit"
-  url "https://github.com/movableink/webkit/releases/download/2022-09-07/qtwebkit-2022-09-07-src.tar.xz"
-  sha256 "1a9f77c3f11a44d147cab6db0fd34aea803f149242e2c217683392aa2f572060"
+  url "https://github.com/movableink/webkit/archive/refs/tags/2023-12-18-qt6.tar.gz"
+  sha256 "f0186a0e0dcdd5f67e3c529ed64c177fe5241c2c5a390e11b02202216e22baa5"
   revision 1
-  version "2022-09-07"
-  head "https://github.com/movableink/webkit.git", :branch => "merge-upstream-2022-09-07"
+  version "2023-12-18"
+  head "https://github.com/movableink/webkit.git", :branch => "qt6"
 
   depends_on "cmake" => :build
   depends_on "ninja" => [:build, :optional]
-  depends_on "qt@5"
+  depends_on "qt"
   depends_on "libjpeg"
   depends_on "libpng"
   depends_on "fontconfig"
@@ -21,18 +21,16 @@ class Qtwebkit < Formula
   end
 
   patch do
-    url "https://gist.githubusercontent.com/mnutt/f721c9ed74a8646426178395b661bbc2/raw/c9dc8a6fd3087b9a739b1beaea12f438f139bea9/qtwebkit-asset-api.diff"
-    sha256 "ed72ca4eae0484eef7f8a9f733e14a86434e4ac377932916fe7cfd7874a82baf"
+    url "https://gist.githubusercontent.com/mnutt/6bdf11632bad80195926abbe1fcddc85/raw/91833eb055defc082184330e9c01dada482791bf/qtwebkit-asset-api-2023-12-18.diff"
+    sha256 "c812ac359bcf2d41abe4d17c9559be0281c98afc3928fdde9244977df3c678ac"
   end
 
   def install
-    qt5 = Formula["qt@5"]
     libjpeg = Formula["libjpeg"]
 
     extra_args = %W[
       -DPORT=Qt
       -DENABLE_WEBKIT=OFF
-      -DCMAKE_PREFIX_PATH=#{qt5.installed_prefixes.join(':')}:#{libjpeg.installed_prefixes.join(':')}
     ]
 
     mkdir "build" do
