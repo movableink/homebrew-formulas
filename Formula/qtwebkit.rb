@@ -17,7 +17,7 @@ class Qtwebkit < Formula
 
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
-    sha256 cellar: :any, high_sierra: "b6c1a5f275e9bc2a945a97c0c00c88c4fb709c156d44f423893fa1dbc78db446"
+    sha256 cellar: :any, arm64_sonoma: "00367e0de67305cff6556738fc03112475d88bc53e73cf726ebd61687412837c"
   end
 
   patch do
@@ -26,8 +26,6 @@ class Qtwebkit < Formula
   end
 
   def install
-    libjpeg = Formula["libjpeg"]
-
     extra_args = %W[
       -DPORT=Qt
       -DENABLE_WEBKIT=OFF
