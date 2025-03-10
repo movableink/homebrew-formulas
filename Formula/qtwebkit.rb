@@ -1,11 +1,11 @@
 class Qtwebkit < Formula
   desc "Full-featured qt port of the WebKit rendering engine"
   homepage "https://github.com/movableink/webkit"
-  url "https://github.com/movableink/webkit/archive/refs/tags/2023-12-18-qt6.tar.gz"
-  sha256 "f0186a0e0dcdd5f67e3c529ed64c177fe5241c2c5a390e11b02202216e22baa5"
+  url "https://github.com/movableink/webkit/archive/refs/tags/2024-12-08.tar.gz"
+  sha256 "163066477fc1d9cc3d2cd9cd3b4c5499e5510de7d6e0137156085f6e7c1f3260"
   revision 1
-  version "2023-12-18"
-  head "https://github.com/movableink/webkit.git", :branch => "qt6"
+  version "2024-12-08"
+  head "https://github.com/movableink/webkit.git", :branch => "master"
 
   depends_on "cmake" => :build
   depends_on "ninja" => [:build, :optional]
@@ -17,13 +17,12 @@ class Qtwebkit < Formula
 
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
-    sha256 cellar: :any, arm64_sonoma: "dfd5fb1375bcdde527fc6ff277ce202eb988de97b8d04e298b5030993426a87b"
-    rebuild 1
+    sha256 cellar: :any, arm64_sequoia: "63e12667f1abcb50cce4d3d65a8d8b85c7ea824d00fd91fab46862536a178e1e"
   end
 
   patch do
-    url "https://gist.githubusercontent.com/mnutt/6bdf11632bad80195926abbe1fcddc85/raw/91833eb055defc082184330e9c01dada482791bf/qtwebkit-asset-api-2023-12-18.diff"
-    sha256 "c812ac359bcf2d41abe4d17c9559be0281c98afc3928fdde9244977df3c678ac"
+    url "https://gist.githubusercontent.com/mnutt/38683a28068cef0b328224e0ff48f36c/raw/2d30675efc2182fed84ab3b547c6237a1c72931a/asset-loaded-api-2024-12-08.diff"
+    sha256 "6af5907c48c6d5c5d4f118f94f6ba8e3520d958b8d035ad3a852e2683cda03a4"
   end
 
   def install
