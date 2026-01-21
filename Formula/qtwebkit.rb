@@ -1,15 +1,15 @@
 class Qtwebkit < Formula
   desc "Full-featured qt port of the WebKit rendering engine"
   homepage "https://github.com/movableink/webkit"
-  url "https://github.com/movableink/webkit/archive/refs/tags/2024-12-08.tar.gz"
-  sha256 "163066477fc1d9cc3d2cd9cd3b4c5499e5510de7d6e0137156085f6e7c1f3260"
+  url "https://github.com/movableink/webkit/releases/download/2025-06-10/qtwebkit-2025-06-10-src.tar.xz"
+  sha256 "83fd70b90f12e98cf10e52cca90d0234a3b088a5c46bd498b8d096dfe82e8811"
   revision 1
-  version "2024-12-08"
+  version "2025-06-10"
   head "https://github.com/movableink/webkit.git", :branch => "master"
 
   depends_on "cmake" => :build
   depends_on "ninja" => [:build, :optional]
-  depends_on "qt"
+  depends_on "movableink/formulas/qtbase"
   depends_on "libjpeg"
   depends_on "libpng"
   depends_on "fontconfig"
@@ -17,18 +17,24 @@ class Qtwebkit < Formula
 
   bottle do
     root_url "https://movableink-homebrew-formulas.s3.amazonaws.com"
-    sha256 cellar: :any, arm64_sequoia: "63e12667f1abcb50cce4d3d65a8d8b85c7ea824d00fd91fab46862536a178e1e"
-  end
-
-  patch do
-    url "https://gist.githubusercontent.com/mnutt/38683a28068cef0b328224e0ff48f36c/raw/2d30675efc2182fed84ab3b547c6237a1c72931a/asset-loaded-api-2024-12-08.diff"
-    sha256 "6af5907c48c6d5c5d4f118f94f6ba8e3520d958b8d035ad3a852e2683cda03a4"
+    sha256 cellar: :any, arm64_sequoia: "1ed46d05db4492b86e9c92b8f116c970bd8e4e582321de1bc04d1a34b9c1e6f4"
   end
 
   def install
+    qtbase = Formula["movableink/formulas/qtbase"]
+
     extra_args = %W[
       -DPORT=Qt
       -DENABLE_WEBKIT=OFF
+      -DENABLE_GEOLOCATION=OFF
+      -DENABLE_DEVICE_ORIENTATION=OFF
+      -DENABLE_OPENGL=OFF
+      -DDEVELOPER_MODE_FATAL_WARNINGS=OFF
+      -DENABLE_INSPECTOR_UI=ON
+      -DENABLE_EXPERIMENTAL_FEATURES=ON
+      -DENABLE_WEB_CODECS=ON
+      -DCMAKE_PREFIX_PATH=#{qtbase.opt_prefix}
+      -DCMAKE_FRAMEWORK_PATH=#{qtbase.opt_lib}
     ]
 
     mkdir "build" do
